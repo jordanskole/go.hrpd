@@ -1,0 +1,20 @@
+{
+  "name": "go.hrpd",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jordanskole/go.hrpd",
+  "description": "A landing page application for HRPD",
+  "authors": [
+    "jordanskole"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "uri.js": "~1.16.0"
+  }
+}
