@@ -56,8 +56,6 @@
 									<p class="sub">
 										* We don’t share your personal info with anyone.
 									</p>
-									<iframe srcdoc="" class="mail-list-form">
-									</iframe>
 								</form>
 							</div>
 						</div>
@@ -343,6 +341,7 @@
       <script src="../js/parallax.js"></script>
       <script src="../js/scripts.js"></script>
       <script>
+        // build the page based on the ?location= query string
         // wait for the document to load
         $(document).ready(function () {
           // grab the location query param
@@ -358,6 +357,36 @@
           }
 
         });
+
+        // send the form post request via ajax
+        // wait for the document to load
+        $(document).ready(function () {
+          // prevent the default behavior
+          $('.form-email').submit( function (event) {
+            event.preventDefault();
+            console.log('Form Submitted');
+            // build our javascript object
+            var userData = {
+              "email": $('input[name=email]').val(),
+              "name": $('input[name=name]').val()
+            };
+            // build our javascript post request
+            $.ajax({
+              type: "POST",
+              url: "http://hrp-leads.herokuapp.com/",
+              data: userData,
+              success: function ( result ) {
+                console.log('SUCCESS');
+                console.log(result);
+              },
+              dataType: "json",
+              crossDomain: true
+            });
+
+          });
+
+        });
+
 
       </script>
     </body>
