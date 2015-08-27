@@ -380,7 +380,10 @@
                 console.log(result);
               },
               dataType: "json",
-              crossDomain: true
+              crossDomain: true,
+              xhrFields: {
+                  withCredentials: true
+              }
             });
 
           });
