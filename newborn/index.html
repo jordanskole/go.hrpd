@@ -393,7 +393,7 @@
               success: function ( result ) {
                 // log the form submit event to analytics/segment
                 fbq('track', 'Lead');
-                analytics.track('Submitted Lead Form', function () {
+                analytics.track('Lead', function () {
                   console.log('SUCCESS');
                   location.replace('http://heatherreadphotography.com/thank-you/');
                 });
