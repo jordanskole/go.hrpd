@@ -357,13 +357,10 @@
             $('.location').text(queryObject.location);
 
             // track a page view event to analytics/segment
-            analytics.page(queryObject.location + ' Newborn Photographer');
+            // this is turned off because it is redundant 
+            // analytics.page(queryObject.location + ' Newborn Photographer');
 
           // otherwise we dont have a query parameter
-          } else {
-            
-            // so track the standard page title
-            analytics.page('Rochester Hills Newborn Photographer');
           }
 
 
