@@ -50,7 +50,7 @@
 									</li>
 								</ul>
 								<form class="form-email" method="post" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
-									<input type="text" name="name" class="signup-name-field validate-required" placeholder="Your Name">
+									<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name">
 									<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address">
 									<input type="submit" value="Download Pricing »">
 									<p class="sub">
@@ -90,7 +90,7 @@
 					</div><!-- row -->
           <div class="row">
             <div class="col-sm-6 col-sm-offset-3 col-offset-3 text-center testimonial">
-              <span class="comma">""</span>
+              <span class="comma">"</span>
               <h4>There are no words to describe Heather's talent. She's absolutely fantastic! We are beyond thrilled with the outcome of our newborn session and the moments she captured at our 1 year old's birthday. Highly recommend!!!</h4>
               <p>
                 - Jessica Kessler
@@ -146,7 +146,7 @@
 							<h5>Appointments fill up fast! Download a newborn photography pricing kit today.</h5>
 							<form class="contained-form form-email" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
 								<h6>Download A Newborn Pricing Package</h6>
-								<input type="text" name="name" class="signup-name-field validate-required" placeholder="Your Name">
+								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name">
 								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address">
 								<input type="submit" value="Download Pricing »">
 								<p class="sub">
@@ -290,7 +290,7 @@
 					<div class="row">
 						<div class="col-sm-12 col-md-7 col-md-offset-5 text-center">
 							<form class="form-email" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
-								<input type="text" name="name" class="signup-name-field validate-required" placeholder="Your Name">
+								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name">
 								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address">
 								<input type="submit" value="Download Pricing Package">
 								<p class="sub">
@@ -380,11 +380,11 @@
               contentType: 'application/x-www-form-urlencoded',
               success: function ( result ) {
                 console.log('SUCCESS');
-                console.log(result);
+                location.replace('http://heatherreadphotography.com/thank-you/');
               },
               error: function (request, status, error) {
                 console.log('ERROR');
-                console.log(request.responseText);
+                alert('Oh dear! Something went wrong! Please send an email to heather@heatherreadphotography.com to let me know!');
               },
               crossDomain: true
               // xhrFields: {
