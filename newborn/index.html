@@ -383,6 +383,13 @@
               "firstName": userData.fname,
               "email": userData.email
             });
+
+            // fullstory identify
+            // FS.identify({
+            //   displayName: userData.fname,
+            //   email: userData.email
+            // });
+
             // build our javascript post request
             $.ajax({
               type: "POST",
@@ -391,12 +398,17 @@
               data: userData,
               contentType: 'application/x-www-form-urlencoded',
               success: function ( result ) {
+
                 // log the form submit event to analytics/segment
-                fbq('track', 'Lead');
                 analytics.track('Lead', function () {
                   console.log('SUCCESS');
                   location.replace('http://heatherreadphotography.com/thank-you/');
                 });
+
+                // fb track
+                fbq('track', 'Lead');
+
+
               },
               error: function (request, status, error) {
                 // log the error to analytics
