@@ -380,6 +380,9 @@
 
             if (userData.fname == '') {
               // alert('First name is required');
+              analytics.track('Form Error', {
+                "message": "fname validation"
+              });
               swal({
                 title: "Oops!",
                 text: "First name is required",
@@ -391,6 +394,9 @@
 
             if (userData.email == '') {
               // alert('Email is required');
+              analytics.track('Form Error', {
+                "message": "email validation"
+              });
               swal({
                 title: "Oh dear!",
                 text: "Email address is required",
