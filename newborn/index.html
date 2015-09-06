@@ -12,6 +12,7 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,700" rel="stylesheet" type="text/css">
         <link href="../css/font-opensans.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="../bower_components/sweetalert/dist/sweetalert.css">
     </head>
 
     <body>
@@ -328,6 +329,7 @@
   		<!-- <script src="../js/jquery.min.js"></script> -->
       <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
       <script src="../bower_components/uri.js/src/URI.min.js"></script>
+      <script src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
   		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
       <script src="../js/bootstrap.min.js"></script>
@@ -369,7 +371,7 @@
           // prevent the default behavior
           $('.form-email').submit( function (event) {
             event.preventDefault();
-            console.log('Form Submitted');
+            console.log('Form Submit attempt');
             // build our javascript object
             var userData = {
               "email": $('input[name=email]').val(),
@@ -377,12 +379,24 @@
             };
 
             if (userData.fname == '') {
-              alert('First name is required');
+              // alert('First name is required');
+              swal({
+                title: "Oops!",
+                text: "First name is required",
+                type: "warning",
+                confirmButtonText: "Okay"
+              });
               return false;
             }
 
             if (userData.email == '') {
-              alert('Email is required');
+              // alert('Email is required');
+              swal({
+                title: "Oh dear!",
+                text: "Email address is required",
+                type: "warning",
+                confirmButtonText: "Okay"
+              });
               return false;
             }
 
