@@ -12,6 +12,7 @@
         <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,700" rel="stylesheet" type="text/css">
         <link href="../css/font-opensans.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="../bower_components/sweetalert/dist/sweetalert.css">
     </head>
 
     <body>
@@ -49,8 +50,8 @@
 									</li>
 								</ul>
 								<form class="form-email" method="post" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
-									<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name">
-									<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address">
+									<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name (required)">
+									<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (required)">
 									<input type="submit" value="Download Pricing »">
 									<p class="sub">
 										* We don’t share your personal info with anyone.
@@ -145,8 +146,8 @@
 							<h5>Appointments fill up fast! Download a newborn photography pricing kit today.</h5>
 							<form class="contained-form form-email" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
 								<h6>Download A Newborn Pricing Package</h6>
-								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name">
-								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address">
+								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name (required)">
+								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (required)">
 								<input type="submit" value="Download Pricing »">
 								<p class="sub">
 									* We don’t share your personal info with anyone. Check out our <a href="privacy.html"> Privacy Policy</a> for more information.
@@ -289,14 +290,12 @@
 					<div class="row">
 						<div class="col-sm-12 col-md-7 col-md-offset-5 text-center">
 							<form class="form-email" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
-								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name">
-								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address">
+								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name (required)">
+								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (required)">
 								<input type="submit" value="Download Pricing Package">
 								<p class="sub">
 									* We don’t share your personal info with anyone.
 								</p>
-								<iframe srcdoc="" class="mail-list-form">
-								</iframe>
 							</form>
 						</div>
 					</div>
@@ -330,6 +329,7 @@
   		<!-- <script src="../js/jquery.min.js"></script> -->
       <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
       <script src="../bower_components/uri.js/src/URI.min.js"></script>
+      <script src="../bower_components/sweetalert/dist/sweetalert.min.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
   		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
       <script src="../js/bootstrap.min.js"></script>
@@ -371,12 +371,41 @@
           // prevent the default behavior
           $('.form-email').submit( function (event) {
             event.preventDefault();
-            console.log('Form Submitted');
+            console.log('Form Submit attempt');
             // build our javascript object
             var userData = {
               "email": $('input[name=email]').val(),
               "fname": $('input[name=fname]').val()
             };
+
+            if (userData.fname == '') {
+              // alert('First name is required');
+              analytics.track('Form Error', {
+                "message": "fname validation"
+              });
+              swal({
+                title: "Oops!",
+                text: "First name is required",
+                type: "warning",
+                confirmButtonText: "Okay"
+              });
+              return false;
+            }
+
+            if (userData.email == '') {
+              // alert('Email is required');
+              analytics.track('Form Error', {
+                "message": "email validation"
+              });
+              swal({
+                title: "Oh dear!",
+                text: "Email address is required",
+                type: "warning",
+                confirmButtonText: "Okay"
+              });
+              return false;
+            }
+
 
             // identify the user
             analytics.identify({
