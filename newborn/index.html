@@ -373,10 +373,13 @@
             event.preventDefault();
             console.log('Form Submit attempt');
             // build our javascript object
+            var thisForm = $(this).closest('form.form-email');
+
             var userData = {
-              "email": $('input[name=email]').val(),
-              "fname": $('input[name=fname]').val()
+              "email": thisForm.find('input[name=email]').val(),
+              "fname": thisForm.find('input[name=fname]').val()
             };
+            console.log(userData);
 
             if (userData.fname == '') {
               // alert('First name is required');
