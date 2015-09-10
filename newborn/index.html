@@ -49,14 +49,30 @@
 											Incredible quality of work and attention to detail.&nbsp;</p>
 									</li>
 								</ul>
-								<form class="form-email" method="post" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
+								<!-- <form class="form-email" method="post" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
 									<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name (required)">
 									<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (required)">
 									<input type="submit" value="Download Pricing »">
 									<p class="sub">
 										* We don’t share your personal info with anyone.
 									</p>
-								</form>
+								</form> -->
+                <form class="form-email" action='http://crm.heatherreadphotography.com/proc.php' method='post' id='_form_31' accept-charset='utf-8' enctype='multipart/form-data'>
+                  <input type='hidden' name='f' value='31'>
+                  <input type='hidden' name='s' value=''>
+                  <input type='hidden' name='c' value='0'>
+                  <input type='hidden' name='m' value='0'>
+                  <input type='hidden' name='act' value='sub'>
+                  <input type='hidden' name='nlbox[]' value='2'>
+
+                  <input type="text" name="fullname" class="signup-name-field validate-required" placeholder="Full Name (required)">
+									<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (required)">
+									<input type="submit" value="Download Pricing »">
+									<p class="sub">
+										* We don’t share your personal info with anyone.
+									</p>
+
+                </form>
 							</div>
 						</div>
 					</div>
@@ -144,17 +160,24 @@
 						<div class="col-sm-12 text-center">
 							<h3>Download Pricing Today</h3>
 							<h5>Appointments fill up fast! Download a newborn photography pricing kit today.</h5>
-							<form class="contained-form form-email" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
-								<h6>Download A Newborn Pricing Package</h6>
-								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name (required)">
-								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (required)">
+
+              <form class="contained-form form-email" action='http://crm.heatherreadphotography.com/proc.php' method='post' id='_form_31' accept-charset='utf-8' enctype='multipart/form-data'>
+                <input type='hidden' name='f' value='31'>
+                <input type='hidden' name='s' value=''>
+                <input type='hidden' name='c' value='0'>
+                <input type='hidden' name='m' value='0'>
+                <input type='hidden' name='act' value='sub'>
+                <input type='hidden' name='nlbox[]' value='2'>
+
+                <h6>Download A Newborn Pricing Package</h6>
+								<input type="text" name="fullname" class="signup-name-field validate-required" placeholder="Full Name (req)">
+								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (req)">
 								<input type="submit" value="Download Pricing »">
 								<p class="sub">
 									* We don’t share your personal info with anyone. Check out our <a href="privacy.html"> Privacy Policy</a> for more information.
 								</p>
-								<iframe srcdoc="" class="mail-list-form">
-								</iframe>
-							</form>
+
+              </form>
 						</div>
 					</div>
 				</div>
@@ -289,14 +312,22 @@
 
 					<div class="row">
 						<div class="col-sm-12 col-md-7 col-md-offset-5 text-center">
-							<form class="form-email" data-success="Thanks for your submission, we will be in touch shortly." data-error="Please fill all fields correctly.">
-								<input type="text" name="fname" class="signup-name-field validate-required" placeholder="First Name (required)">
+              <form class="form-email" action='http://crm.heatherreadphotography.com/proc.php' method='post' id='_form_31' accept-charset='utf-8' enctype='multipart/form-data'>
+                <input type='hidden' name='f' value='31'>
+                <input type='hidden' name='s' value=''>
+                <input type='hidden' name='c' value='0'>
+                <input type='hidden' name='m' value='0'>
+                <input type='hidden' name='act' value='sub'>
+                <input type='hidden' name='nlbox[]' value='2'>
+
+                <input type="text" name="fullname" class="signup-name-field validate-required" placeholder="Full Name (required)">
 								<input type="text" name="email" class="validate-required validate-email signup-email-field" placeholder="Email Address (required)">
 								<input type="submit" value="Download Pricing Package">
 								<p class="sub">
 									* We don’t share your personal info with anyone.
 								</p>
-							</form>
+
+              </form>
 						</div>
 					</div>
 				</div>
@@ -370,31 +401,35 @@
         $(document).ready(function () {
           // prevent the default behavior
           $('.form-email').submit( function (event) {
-            event.preventDefault();
+
             console.log('Form Submit attempt');
+
             // build our javascript object
             var thisForm = $(this).closest('form.form-email');
 
             var userData = {
               "email": thisForm.find('input[name=email]').val(),
-              "fname": thisForm.find('input[name=fname]').val()
+              "fullname": thisForm.find('input[name=fullname]').val()
             };
             console.log(userData);
 
-            if (userData.fname == '') {
+            // if full name is missing
+            if (userData.fullname == '') {
               // alert('First name is required');
               analytics.track('Form Error', {
                 "message": "fname validation"
               });
               swal({
                 title: "Oops!",
-                text: "First name is required",
+                text: "Full name is required",
                 type: "warning",
                 confirmButtonText: "Okay"
               });
+              event.preventDefault();
               return false;
             }
 
+            // if email is missing
             if (userData.email == '') {
               // alert('Email is required');
               analytics.track('Form Error', {
@@ -406,6 +441,7 @@
                 type: "warning",
                 confirmButtonText: "Okay"
               });
+              event.preventDefault();
               return false;
             }
 
@@ -417,47 +453,22 @@
             });
 
             // fullstory identify
-            // FS.identify({
-            //   displayName: userData.fname,
-            //   email: userData.email
-            // });
+            FS.identify({
+              displayName: userData.fullname,
+              email: userData.email
+            });
 
-            // build our javascript post request
-            $.ajax({
-              type: "POST",
-              // url: "http://hrp-leads.herokuapp.com/",
-              url: "https://zapier.com/hooks/catch/3bs3d2/",
-              data: userData,
-              contentType: 'application/x-www-form-urlencoded',
-              success: function ( result ) {
+            // fb track
+            fbq('track', 'Lead');
 
-                // fb track
-                fbq('track', 'Lead');
+            // fb conversion pixel
+            window._fbq = window._fbq || [];
+            window._fbq.push(['track', '6031573377236', {'value':'0.00','currency':'USD'}]);
 
-                // fb conversion pixel
-                window._fbq = window._fbq || [];
-                window._fbq.push(['track', '6031573377236', {'value':'0.00','currency':'USD'}]);
-
-                // log the form submit event to analytics/segment
-                analytics.track('Lead', function () {
-                  console.log('SUCCESS');
-                  location.replace('http://heatherreadphotography.com/thank-you/');
-                });
-
-
-
-              },
-              error: function (request, status, error) {
-                // log the error to analytics
-                analytics.track('Error: Lead Form', error, function () {
-                  console.log('ERROR');
-                  alert('Oh dear! Something went wrong! Please send an email to heather@heatherreadphotography.com to let me know!');
-                });
-              },
-              crossDomain: true
-              // xhrFields: {
-              //     withCredentials: true
-              // }
+            // log the form submit event to analytics/segment
+            analytics.track('Lead', function () {
+              console.log('SUCCESS');
+              return;
             });
 
           });
