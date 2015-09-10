@@ -448,6 +448,22 @@
               return false;
             }
 
+            // if email is poorly formatted
+            if (!userData.email.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i)) {
+              // alert('Email is required');
+              analytics.track('Form Error', {
+                "message": "email validation"
+              });
+              swal({
+                title: "Yikes!",
+                text: "A valid email address is required.",
+                type: "warning",
+                confirmButtonText: "Got it!"
+              });
+              event.preventDefault();
+              return false;
+            }
+
 
             // identify the user
             analytics.identify({
